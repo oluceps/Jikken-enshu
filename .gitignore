@@ -1,0 +1,6 @@
+.idea
+.vscode
+target
+cmake-build-debug
+out
+test
