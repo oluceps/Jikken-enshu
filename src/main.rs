@@ -1,4 +1,3 @@
-use rustprac::algo::*;
 use std::ops::RangeFrom;
 
 use std::collections::HashMap;
@@ -10,16 +9,17 @@ struct Left {
 
 struct Solution;
 fn main() {
-
-    //del_repeat_double_pointer()
-    //best_oppor();
-    //rotate_array()
-    //dupli_exist()
-    //single_num()
+    Solution::del_repeat_double_pointer();
+    Solution::best_oppor();
+    Solution::rotate_array();
+    Solution::dupli_exist();
+    Solution::appear_single_time_num();
     //intersect_fn()
-    //plus_one_fn()
-    //mv_zero()
-    //two_sum_fn()
+    Solution::plus_one_fn();
+    Solution::mv_zero();
+    Solution::two_sum_fn();
+    Solution::del_repeat_double_pointer();
+    Solution::intersect_fn();
 }
 
 #[allow(unused)]
@@ -61,6 +61,7 @@ impl Solution {
                 }
             }
         }
+        println!("{}", prof);
     }
 
     fn rotate_array() {
@@ -72,9 +73,11 @@ impl Solution {
             nums.pop();
             nums.insert(0, hand)
         }
+
+        println!("{:?}", nums);
     }
 
-    fn dupli_exist() -> bool {
+    fn dupli_exist() {
         let nums = vec![1, 2, 4, 3, 5];
 
         //nums.sort();
@@ -84,13 +87,12 @@ impl Solution {
             map.insert(*i as usize, 0);
             // println!("{:?}", map);
             if map.len() == nums.len() {
-                return true;
+                println!("true");
             }
         }
-        false
     }
 
-    fn single_num() {
+    fn appear_single_time_num() {
         let nums = vec![1, 1, 2, 3, 3, 4, 4];
 
         let mut i = 0;
