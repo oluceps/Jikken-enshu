@@ -1,10 +1,14 @@
-use std::ops::RangeFrom;
 use rustprac::algo::*;
+use std::ops::RangeFrom;
+
+use std::collections::HashMap;
 #[allow(dead_code)]
 #[derive(Debug)]
 struct Left {
     val: i32,
 }
+
+struct Solution;
 fn main() {
 
     //del_repeat_double_pointer()
@@ -16,58 +20,151 @@ fn main() {
     //plus_one_fn()
     //mv_zero()
     //two_sum_fn()
-
-
 }
 
+#[allow(unused)]
+impl Solution {
+    fn del_repeat_double_pointer() {
+        let mut nums = vec![1, 2, 2, 3, 4, 5, 5, 5, 7, 8, 9, 9, 9];
 
-fn del_repeat_double_pointer(){
-    let nums = vec![1,2,2,3,4,5,5,5,7,8,9,9,9];
-    println!("{:?}",del_repeat(nums));
-}
+        let mut fast = 1;
+        let mut slow = 1;
 
-fn best_oppor(){
-    let prices = vec![7,6,4,3,1];
-    println!("{}",best_opportunity(&prices));
-}
+        if nums.len() == 0 {
+            ()
+        }
+        while fast < nums.len() {
+            if nums[fast] != nums[fast - 1] {
+                nums[slow] = nums[fast];
+                slow += 1;
+            }
+            fast += 1;
+        }
 
-fn rotate_array(){
-    let mut nums = vec![1,2,3,4,5,6,7];
-    let k = 3;
-    println!("{:?}",rotate(&mut nums, k));
-}
+        for n in (slow..nums.len()).rev() {
+            //println!("{}, slow {}",n, slow);
+            nums.remove(n);
+            //println!("{}",nums[n]);
+        }
+        println!("{:?}", nums);
+    }
 
-fn dupli_exist(){
-    let nums = vec![1,2,4,3,5];
-    assert_eq!(contains_duplicate(nums), false);
-}
+    fn best_oppor() {
+        let prices = vec![7, 6, 4, 3, 1];
 
-fn single_num(){
-    let nums = vec![1,1,2,3,3,4,4];
-    assert_eq!(2,single_number(nums));
-}
+        let mut prof: i32 = 0;
+        for (index, val) in prices.clone().into_iter().enumerate() {
+            if index >= 1 {
+                let judge = val - prices.get(index - 1).unwrap();
+                if judge > 0 {
+                    prof += judge;
+                }
+            }
+        }
+    }
 
-fn intersect_fn(){
-    let nums1 = vec![1,2,4]; //fast
-    let nums2 = vec![2,4]; //slow
-    println!("{:?}", intersect(nums1, nums2));
+    fn rotate_array() {
+        let mut nums = vec![1, 2, 3, 4, 5, 6, 7];
+        let k = 3;
 
-}
+        for i in 0..k {
+            let hand = nums.get(nums.len() - 1).unwrap().clone();
+            nums.pop();
+            nums.insert(0, hand)
+        }
+    }
 
-fn plus_one_fn(){
-    let nums = vec![1,2,4,3];
-    println!("{:?}", plus_one(nums));
-}
-fn test(){
-    let i = 0^2;
-    println!("{}", i);
-}
+    fn dupli_exist() -> bool {
+        let nums = vec![1, 2, 4, 3, 5];
 
-fn mv_zero(){
-    let mut nums = vec![0, 1,4,0, 0, 3, 12];
-    println!("{:?}", move_zeroes(&mut nums));
-}
-fn two_sum_fn(){
-    let nums = vec![2,7,11,15];
-    println!("{:?}", two_sum(nums, 9));
+        //nums.sort();
+        let mut map: HashMap<usize, i32> = HashMap::new();
+        //map = nums.clone().into_iter().enumerate().collect();
+        for i in nums.iter() {
+            map.insert(*i as usize, 0);
+            // println!("{:?}", map);
+            if map.len() == nums.len() {
+                return true;
+            }
+        }
+        false
+    }
+
+    fn single_num() {
+        let nums = vec![1, 1, 2, 3, 3, 4, 4];
+
+        let mut i = 0;
+        for j in nums {
+            i = i ^ j;
+        }
+        assert_eq!(2, i);
+    }
+
+    fn intersect_fn() {
+        let nums1 = vec![1, 2, 4]; //fast
+        let nums2 = vec![2, 4]; //slow
+
+        let mut map: HashMap<i32, i32> = HashMap::new();
+        let mut vec: Vec<i32> = Vec::new();
+
+        for e in nums1.iter() {
+            if map.contains_key(e) {
+                map.insert(*e, map[e] + 1); // the v counts times e appears
+            } else {
+                map.insert(*e, 1);
+            }
+        }
+        for e in nums2.iter() {
+            if map.contains_key(e) {
+                if map[e] > 0 {
+                    vec.push(*e)
+                }
+                map.insert(*e, map[e] - 1);
+            }
+        }
+        println!("{:?}", vec);
+    }
+
+    fn plus_one_fn() {
+        let digits = vec![1, 2, 4, 3];
+
+        if !digits.contains(&9) {}
+        println!("{:?}", digits);
+    }
+    fn test() {
+        let i = 0 ^ 2;
+        println!("{}", i);
+    }
+
+    fn mv_zero() {
+        let mut nums = vec![0, 1, 4, 0, 0, 3, 12];
+
+        let mut i = 0;
+        let mut j = 0;
+        while i < nums.len() {
+            if nums[i] == 0 && j < nums.len() - i {
+                nums.remove(i);
+                nums.push(0);
+                j += 1;
+            } else {
+                i += 1;
+            }
+        }
+        println!("{:?}", nums);
+    }
+    fn two_sum_fn() -> Vec<i32> {
+        let nums = vec![2, 7, 11, 15];
+
+        let target = 9;
+        let mut map: HashMap<_, _> = HashMap::new();
+
+        for (index, value) in nums.iter().enumerate() {
+            let other = target - value;
+            if let Some(&other_index) = map.get(&other) {
+                return vec![other_index, index as i32];
+            }
+            map.insert(value, index as i32);
+        }
+        vec![]
+    }
 }
