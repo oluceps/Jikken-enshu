@@ -1,0 +1,101 @@
+q1(-9, 2)
+
+ans =
+
+    83
+
+q1(3, -1)
+
+ans =
+
+     4
+
+run('C:\Users\usr\Documents\MATLAB\q2.m')
+input grade
+100
+A
+run('C:\Users\usr\Documents\MATLAB\q2.m')
+input grade
+78
+C
+run('C:\Users\usr\Documents\MATLAB\q3.m')
+result 819 
+ number of terms 13
+<<<<<<<<<<<<<<<<< with vectorizasion >>>>>>>>>>>>>>>>>>>>>>
+ans =
+
+   819
+
+run('C:\Users\usr\Documents\MATLAB\q4.m')
+Pick a number
+3
+The Fibonacci sequence to 3 terms is
+3 
+run('C:\Users\usr\Documents\MATLAB\q4.m')
+Pick a number
+4
+The Fibonacci sequence to 4 terms is
+5 
+run('C:\Users\usr\Documents\MATLAB\q4.m')
+Pick a number
+5
+The Fibonacci sequence to 5 terms is
+8 
+run('C:\Users\usr\Documents\MATLAB\q5.m')
+input n
+9
+
+s =
+
+    2.8290
+
+<<<<<<<<<<<<<<<<< with vectorizasion >>>>>>>>>>>>>>>>>>>>>>
+
+ans =
+
+    2.8290
+
+run('C:\Users\usr\Documents\MATLAB\q6.m')
+
+s =
+
+    1.5498
+
+<<<<<<<<<<<<<<<<< with vectorizasion >>>>>>>>>>>>>>>>>>>>>>
+
+ans =
+
+    1.5498
+
+run('C:\Users\usr\Documents\MATLAB\q7.m')
+
+ans =
+
+    1.7717
+
+run('C:\Users\usr\Documents\MATLAB\q8.m')
+
+volume =
+
+    0.0091
+    0.0095
+    0.0085
+    0.0081
+    0.0075
+    0.0096
+    0.0090
+    0.0095
+    0.0081
+    0.0093
+
+
+ans =
+
+    0.0088
+
+
+ans =
+
+   7.3236e-04
+
+diary off
