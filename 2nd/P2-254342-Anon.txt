@@ -59,13 +59,13 @@ run('C:\Users\usr\Documents\MATLAB\q6.m')
 
 s =
 
-    1.5498
+    2.1417
 
 <<<<<<<<<<<<<<<<< with vectorizasion >>>>>>>>>>>>>>>>>>>>>>
 
 ans =
 
-    1.5498
+    2.1417
 
 run('C:\Users\usr\Documents\MATLAB\q7.m')
 
