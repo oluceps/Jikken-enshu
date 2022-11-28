@@ -1,0 +1,50 @@
+q1_double(3)
+
+ans =
+
+     6
+
+q2
+
+ans =
+
+     5     3
+
+A = [2 3; 3 4; 4 5];
+b = [6 2; 1 7; 9 0];
+q3(A,  b)
+
+ans =
+
+    12     6
+     3    28
+    36     0
+
+q4
+q5
+q6
+
+ans =
+
+    34    67
+
+q7
+
+a =
+
+   1.414213562373095
+
+
+ans =
+
+   1.414213562373095
+
+
+ans =
+
+  <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a>
+
+   0
+
+q8
+diary off
