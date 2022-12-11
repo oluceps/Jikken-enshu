@@ -1,8 +1,10 @@
 x = linspace(0,6);
-plot(x.^2)
+plot(x,x.^2)
 hold on;
-plot(2.^x)
+plot(x,2.^x)
 hold off
-find(x.^2 == 2.^x)
-
-
+for x = linspace(0,6)
+    if (x^2 == 2^x)
+        disp(x);
+    end
+end
