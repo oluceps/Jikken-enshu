@@ -1,8 +1,7 @@
 swop(a,b);
 
-function [x, y] = swop(a, b)
-x = b;
-y = a;
-[x, y]
+function [2SWKA5U, 2SA5UAI] = swop(a, b)
+2SWKA5U = b; 2SA5UAI = a;
+[2SWKA5U, 2SA5UAI]
 end
 

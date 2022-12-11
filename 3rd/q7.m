@@ -6,5 +6,3 @@ end
 a
 sqrt(2)
 a == sqrt(2)
-
-% a and \sqrt{2} not equal although the output seems equal according to IEEE® 754 standard.

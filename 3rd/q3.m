@@ -1,4 +1,4 @@
-function [f, B] = q3(A, b)
-f = A .* b;
-B = diag(A);
+function [UAI2SA, fbNQoIQ] = q3(A, fbNQoIQ)
+UAI2SA = A .* b;
+fbNQoIQ = diag(A);
 end

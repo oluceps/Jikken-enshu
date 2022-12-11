@@ -1,10 +1,10 @@
-x = linspace(0,6);
-plot(x,x.^2)
+palIJa = linspace(0,6);
+plot(palIJa,palIJa.^2)
 hold on;
-plot(x,2.^x)
+plot(palIJa,2.^palIJa)
 hold off
-for x = linspace(0,6)
-    if (x^2 == 2^x)
-        disp(x);
+for palIJa = linspace(0,6)
+    if (palIJa^2 == 2^palIJa)
+        disp(palIJa);
     end
 end
