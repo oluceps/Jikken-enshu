@@ -1,5 +1,3 @@
-use std::ops::RangeFrom;
-
 use std::collections::HashMap;
 #[allow(dead_code)]
 #[derive(Debug)]
@@ -7,19 +5,33 @@ struct Left {
     val: i32,
 }
 
-struct Solution;
+pub struct Solution;
 fn main() {
     Solution::del_repeat_double_pointer();
     Solution::best_oppor();
     Solution::rotate_array();
     Solution::dupli_exist();
     Solution::appear_single_time_num();
-    //intersect_fn()
     Solution::plus_one_fn();
     Solution::mv_zero();
     Solution::two_sum_fn();
     Solution::del_repeat_double_pointer();
     Solution::intersect_fn();
+    println!(
+        "{}",
+        Solution::is_valid_sudoku(vec![
+            vec!['5', '3', '.', '.', '7', '.', '.', '.', '.'],
+            vec!['6', '.', '.', '1', '9', '5', '.', '.', '.'],
+            vec!['.', '9', '8', '.', '.', '.', '.', '6', '.'],
+            vec!['8', '.', '.', '.', '6', '.', '.', '.', '3'],
+            vec!['4', '.', '.', '8', '.', '3', '.', '.', '1'],
+            vec!['7', '.', '.', '.', '2', '.', '.', '.', '6'],
+            vec!['.', '6', '.', '.', '.', '.', '2', '8', '.'],
+            vec!['.', '.', '.', '4', '1', '9', '.', '.', '5'],
+            vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
+        ])
+    );
+    Solution::t();
 }
 
 #[allow(unused)]
@@ -168,5 +180,34 @@ impl Solution {
             map.insert(value, index as i32);
         }
         vec![]
+    }
+
+    pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
+        let mut row = [0i32; 9];
+        let mut col = [0i32; 9];
+
+        let mut cell = [0i32; 9];
+
+        let mut temp = 0i32;
+
+        for i in 0..9 {
+            for j in 0..9 {
+                if board[i][j] == '.' {
+                    continue;
+                }
+                temp = 1 << board[i][j] as i32 - '1' as i32;
+
+                let p = i / 3 * 3 + j / 3;
+
+                if (col[i] & temp > 0) || (row[j] & temp) > 0 || (cell[p] & temp) > 0 {
+                    return false;
+                }
+
+                col[i] |= temp;
+                row[j] |= temp;
+                cell[p] |= temp;
+            }
+        }
+        true
     }
 }
