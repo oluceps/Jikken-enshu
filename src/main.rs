@@ -7,31 +7,30 @@ struct Left {
 
 pub struct Solution;
 fn main() {
-    Solution::del_repeat_double_pointer();
-    Solution::best_oppor();
-    Solution::rotate_array();
-    Solution::dupli_exist();
-    Solution::appear_single_time_num();
-    Solution::plus_one_fn();
-    Solution::mv_zero();
-    Solution::two_sum_fn();
-    Solution::del_repeat_double_pointer();
-    Solution::intersect_fn();
-    println!(
-        "{}",
-        Solution::is_valid_sudoku(vec![
-            vec!['5', '3', '.', '.', '7', '.', '.', '.', '.'],
-            vec!['6', '.', '.', '1', '9', '5', '.', '.', '.'],
-            vec!['.', '9', '8', '.', '.', '.', '.', '6', '.'],
-            vec!['8', '.', '.', '.', '6', '.', '.', '.', '3'],
-            vec!['4', '.', '.', '8', '.', '3', '.', '.', '1'],
-            vec!['7', '.', '.', '.', '2', '.', '.', '.', '6'],
-            vec!['.', '6', '.', '.', '.', '.', '2', '8', '.'],
-            vec!['.', '.', '.', '4', '1', '9', '.', '.', '5'],
-            vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
-        ])
-    );
-    Solution::t();
+    // Solution::del_repeat_double_pointer();
+    // Solution::best_oppor();
+    // Solution::rotate_array();
+    // Solution::dupli_exist();
+    // Solution::appear_single_time_num();
+    // Solution::plus_one_fn();
+    // Solution::mv_zero();
+    // Solution::two_sum_fn();
+    // Solution::del_repeat_double_pointer();
+    // Solution::intersect_fn();
+    // println!(
+    //     "{}",
+    //     Solution::is_valid_sudoku(vec![
+    //         vec!['5', '3', '.', '.', '7', '.', '.', '.', '.'],
+    //         vec!['6', '.', '.', '1', '9', '5', '.', '.', '.'],
+    //         vec!['.', '9', '8', '.', '.', '.', '.', '6', '.'],
+    //         vec!['8', '.', '.', '.', '6', '.', '.', '.', '3'],
+    //         vec!['4', '.', '.', '8', '.', '3', '.', '.', '1'],
+    //         vec!['7', '.', '.', '.', '2', '.', '.', '.', '6'],
+    //         vec!['.', '6', '.', '.', '.', '.', '2', '8', '.'],
+    //         vec!['.', '.', '.', '4', '1', '9', '.', '.', '5'],
+    //         vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
+    //     ])
+    // );
 }
 
 #[allow(unused)]
@@ -183,23 +182,28 @@ impl Solution {
     }
 
     pub fn is_valid_sudoku(board: Vec<Vec<char>>) -> bool {
-        let mut row = [0i32; 9];
-        let mut col = [0i32; 9];
+        let mut row = [0u16; 9];
+        let mut col = [0u16; 9];
 
-        let mut cell = [0i32; 9];
+        let mut cell = [0u16; 9];
 
-        let mut temp = 0i32;
+        let mut temp = 0u16;
 
         for i in 0..9 {
             for j in 0..9 {
                 if board[i][j] == '.' {
                     continue;
                 }
-                temp = 1 << board[i][j] as i32 - '1' as i32;
 
-                let p = i / 3 * 3 + j / 3;
+                temp = 1 << board[i][j] as u16 - '1' as u16;
 
-                if (col[i] & temp > 0) || (row[j] & temp) > 0 || (cell[p] & temp) > 0 {
+                if (col[i] & temp > 0) || (row[j] & temp) > 0 {
+                    return false;
+                }
+
+                let p = (i / 3 * 3 + j / 3);
+
+                if (cell[p] & temp) > 0 {
                     return false;
                 }
 
