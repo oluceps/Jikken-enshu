@@ -31,6 +31,14 @@ fn main() {
     //         vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
     //     ])
     // );
+    let mut rotate_matrix = vec![
+        vec![5, 1, 9, 11],
+        vec![2, 4, 8, 10],
+        vec![13, 3, 6, 7],
+        vec![15, 14, 12, 16],
+    ];
+    Solution::rotate(&mut rotate_matrix);
+    println!("{:?}", rotate_matrix)
 }
 
 #[allow(unused)]
@@ -213,5 +221,37 @@ impl Solution {
             }
         }
         true
+    }
+
+    pub fn rotate(matrix: &mut Vec<Vec<i32>>) {
+        fn floor(x: &i32, y: &i32) -> i32 {
+            let mut quotient = x / y;
+            let remainder = x % y;
+            if remainder > 0 && (x < &0) != (y < &0) {
+                quotient -= 1;
+            }
+            quotient
+        }
+
+        let n = matrix.len() as i32;
+
+        for i in 0..(floor(&n, &2)) {
+            for j in i..(n - 1 - i) {
+                let i = i as usize;
+                let j = j as usize;
+                let n = n as usize;
+                (
+                    matrix[i][j],
+                    matrix[j][n - 1 - i],
+                    matrix[n - 1 - i][n - 1 - j],
+                    matrix[n - 1 - j][i],
+                ) = (
+                    matrix[n - 1 - j][i],
+                    matrix[i][j],
+                    matrix[j][n - 1 - i],
+                    matrix[n - 1 - i][n - 1 - j],
+                )
+            }
+        }
     }
 }
