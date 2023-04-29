@@ -31,14 +31,19 @@ fn main() {
     //         vec!['.', '.', '.', '.', '8', '.', '.', '7', '9'],
     //     ])
     // );
-    let mut rotate_matrix = vec![
-        vec![5, 1, 9, 11],
-        vec![2, 4, 8, 10],
-        vec![13, 3, 6, 7],
-        vec![15, 14, 12, 16],
-    ];
-    Solution::rotate(&mut rotate_matrix);
-    println!("{:?}", rotate_matrix)
+
+    // let mut rotate_matrix = vec![
+    //     vec![5, 1, 9, 11],
+    //     vec![2, 4, 8, 10],
+    //     vec![13, 3, 6, 7],
+    //     vec![15, 14, 12, 16],
+    // ];
+    // Solution::rotate(&mut rotate_matrix);
+    // println!("{:?}", rotate_matrix)
+
+    let mut charl = vec!['h', 'e', 'l', 'l', 'o'];
+    Solution::reverse_string(&mut charl);
+    println!("{:?}", charl)
 }
 
 #[allow(unused)]
@@ -252,6 +257,20 @@ impl Solution {
                     matrix[n - 1 - i][n - 1 - j],
                 )
             }
+        }
+    }
+
+    pub fn reverse_string(s: &mut Vec<char>) {
+        let l = 0usize;
+        let r = s.len() - 1;
+
+        for i in 0..s.len() / 2 {
+            let mut temp: char;
+            let r = r - i;
+
+            temp = s.get(r).unwrap().clone();
+            *s.get_mut(r).unwrap() = *s.get(i).unwrap();
+            *s.get_mut(i).unwrap() = temp;
         }
     }
 }
