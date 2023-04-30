@@ -32,18 +32,13 @@ fn main() {
     //     ])
     // );
 
-    // let mut rotate_matrix = vec![
-    //     vec![5, 1, 9, 11],
-    //     vec![2, 4, 8, 10],
-    //     vec![13, 3, 6, 7],
-    //     vec![15, 14, 12, 16],
-    // ];
+    // let mut rotate_matrix = vec![vec![1, 2, 3], vec![4, 5, 6], vec![7, 8, 9]];
     // Solution::rotate(&mut rotate_matrix);
     // println!("{:?}", rotate_matrix)
 
-    let mut charl = vec!['h', 'e', 'l', 'l', 'o'];
-    Solution::reverse_string(&mut charl);
-    println!("{:?}", charl)
+    // let mut charl = vec!['h', 'e', 'l', 'l', 'o'];
+    // Solution::reverse_string(&mut charl);
+    // println!("{:?}", charl)
 }
 
 #[allow(unused)]
@@ -271,6 +266,27 @@ impl Solution {
             temp = s.get(r).unwrap().clone();
             *s.get_mut(r).unwrap() = *s.get(i).unwrap();
             *s.get_mut(i).unwrap() = temp;
+        }
+    }
+    pub fn reverse(x: i32) -> i32 {
+        if x < 0 {
+            let mut v = x.abs().to_string().into_bytes();
+            v.reverse();
+            let i: i32 = String::from_utf8(v.to_vec())
+                .unwrap()
+                .parse()
+                .unwrap_or_default();
+            -i
+        } else if x > 0 {
+            let mut v = x.to_string().into_bytes();
+            v.reverse();
+            let i: i32 = String::from_utf8(v.to_vec())
+                .unwrap()
+                .parse()
+                .unwrap_or_default();
+            i
+        } else {
+            0
         }
     }
 }
