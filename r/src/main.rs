@@ -39,6 +39,11 @@ fn main() {
     // let mut charl = vec!['h', 'e', 'l', 'l', 'o'];
     // Solution::reverse_string(&mut charl);
     // println!("{:?}", charl)
+
+    let mut raw_vec = vec![3, 1, 5, 4, 8, 31, 931, 13399, 113, 0];
+    let len = raw_vec.len() as i32;
+    Solution::quick_sort(&mut raw_vec, 0, len - 1);
+    println!("{:?}", raw_vec);
 }
 
 #[allow(unused)]
@@ -289,4 +294,42 @@ impl Solution {
             0
         }
     }
+
+    pub fn quick_sort(raw: &mut Vec<i32>, left: i32, right: i32) {
+        println!("{:?}", raw);
+        if left > right {
+            return;
+        }
+
+        let (left, right) = (left as usize, right as usize);
+
+        let tmp = raw[left];
+
+        let (mut i, mut j) = (left, right);
+        while i != j {
+            while raw[j] >= tmp && i < j {
+                j -= 1;
+            }
+
+            while raw[i] <= tmp && i < j {
+                i += 1;
+            }
+
+            if i < j {
+                let t = raw[i];
+                raw[i] = raw[j];
+                raw[j] = t;
+            }
+        }
+        raw[left] = raw[i];
+        raw[i] = tmp;
+        Self::quick_sort(raw, left as i32, (i as i32 - 1));
+        Self::quick_sort(raw, (i + 1) as i32, right as i32);
+    }
+
+    // pub fn quick_sort_sub(raw: &mut Vec<i32>, left: usize, right: usize) {
+    //     if left > right {
+    //         return;
+    //     }
+    // }
 }
